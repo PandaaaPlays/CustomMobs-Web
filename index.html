@@ -1,33 +1,29 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bienvenue sur ma page GitHub</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      color: #333;
-      text-align: center;
-      padding: 50px;
-    }
-    h1 {
-      color: #007acc;
-    }
-    a {
-      color: #007acc;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
+  <title>File Generator</title>
 </head>
 <body>
-  <h1>👋 Bonjour et bienvenue !</h1>
-  <p>Ceci est une page hébergée via <strong>GitHub Pages</strong>.</p>
-  <p>Tu peux personnaliser ce contenu à ta guise.</p>
-  <p>🔗 <a href="https://github.com/ton-utilisateur">Voir mon GitHub</a></p>
+  <h1>Create a file</h1>
+  
+  <textarea id="content" rows="10" cols="50" placeholder="Type your content here..."></textarea><br>
+  <input id="filename" placeholder="filename.txt" />
+  <button onclick="downloadFile()">Generate & Download</button>
+
+  <script>
+    function downloadFile() {
+      const content = document.getElementById("content").value;
+      const filename = document.getElementById("filename").value || "file.txt";
+      const blob = new Blob([content], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+  </script>
 </body>
 </html>
