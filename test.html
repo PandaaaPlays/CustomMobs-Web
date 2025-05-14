@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>File Generator 2</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      color: #007acc;
+    }
+    a {
+      color: #007acc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>CustomMobs</h1>
+  <p>Hello world</p>
+  <textarea id="content" rows="10" cols="50" placeholder="Type your content here..."></textarea><br>
+  <input id="filename" placeholder="filename.txt" />
+  <button onclick="downloadFile()">Generate & Download 2</button>
+
+  <script>
+    function downloadFile() {
+      const content = document.getElementById("content").value;
+      const filename = document.getElementById("filename").value || "file.txt";
+      const blob = new Blob([content], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+  </script>
+</body>
+</html>
